@@ -74,7 +74,7 @@ const Products = () => {
     navigate('/login');
     toast.error('Login first to add Items to cart!')
   }
-
+   if(!products) return null;
 
   return (
 
