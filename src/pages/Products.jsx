@@ -11,8 +11,8 @@ const Products = () => {
   const [storeProduct, setStoredProduct] = useState([])
   //  console.log(cartProducts)
   const [toggleDes, setToggleDes] = useState([]);
-  const { addtocart,cartProducts, setCartProducts, loggedIn, search, setSearch } = useContext(authContext)
-
+  const { addtocart, cartProducts, setCartProducts, loggedIn, search, setSearch } = useContext(authContext)
+  console.log(cartProducts)
   // console.log(typeof cartProducts)
   useEffect(() => {
     const fetchdata = async () => {
@@ -33,7 +33,7 @@ const Products = () => {
     fetchdata();
   }, [])
 
-  
+
   useEffect(() => {
     console.log("Updated cart:", cartProducts);
 
@@ -42,17 +42,17 @@ const Products = () => {
 
   // console.log(event.target.value)
 
- useEffect(() => {
-  if (!search) {
-    setProducts(storeProduct);
-    return;
-  }
+  useEffect(() => {
+    if (!search) {
+      setProducts(storeProduct);
+      return;
+    }
 
-  const searchedProduct = storeProduct.filter((ele) =>
-    ele.title?.toLowerCase().includes(search.toLowerCase())
-  );
-  setProducts(searchedProduct);
-}, [search, storeProduct]);
+    const searchedProduct = storeProduct.filter((ele) =>
+      ele.title?.toLowerCase().includes(search.toLowerCase())
+    );
+    setProducts(searchedProduct);
+  }, [search, storeProduct]);
 
 
 
@@ -74,8 +74,9 @@ const Products = () => {
     navigate('/login');
     toast.error('Login first to add Items to cart!')
   }
-   if(!products) return null;
-
+  if (!products) {
+    return null;
+  }
   return (
 
     <div className='bg-[#f3f4f6] p-2 relative'>
@@ -117,7 +118,7 @@ const Products = () => {
               <h1 className='text-sm text-gray-500'>Category: {element.category}</h1>
               <h1 className='text-lg font-semibold text-green-600'>${element.price}</h1>
               <div className='md:block  flex gap-1'>
-                <button style={{ textWrap: 'balance', marginBottom:'8px' }} onClick={() => localStorage.getItem('loggedInUser') ? addtocart(element) : doSignIn()} className={cartProducts.includes(element) ? 'cursor-pointer w-max px-2 md:px-6 py-2 mt-2 font-semibold bg-white border text-sm border-blue-500 text-[#1E2939] rounded' : 'py-2 text-sm cursor-pointer w-max px-2 md:px-7 md:py-2 mt-2 font-semibold bg-[#526e98] text-white rounded'}>
+                <button style={{ textWrap: 'balance', marginBottom: '8px' }} onClick={() => localStorage.getItem('loggedInUser') ? addtocart(element) : doSignIn()} className={cartProducts.includes(element) ? 'cursor-pointer w-max px-2 md:px-6 py-2 mt-2 font-semibold bg-white border text-sm border-blue-500 text-[#1E2939] rounded' : 'py-2 text-sm cursor-pointer w-max px-2 md:px-7 md:py-2 mt-2 font-semibold bg-[#526e98] text-white rounded'}>
 
                   {cartProducts.includes(element) ? 'Remove Cart' : 'Add To Cart'}
                 </button>

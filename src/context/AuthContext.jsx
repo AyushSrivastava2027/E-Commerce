@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [search, setSearch] = useState();
   useEffect(() => {
     // On mount, try to load user from localStorage
-    const cartItem = JSON.parse(localStorage.getItem('CartProducts'));
+    const cartItem = JSON.parse(localStorage.getItem('CartProducts'))||[];
     setCartProducts(cartItem)
     const storedUser = localStorage.getItem('user');
     if (storedUser) {

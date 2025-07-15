@@ -5,7 +5,7 @@ import AddressModal from "./AddressModal";
 
 const MyCart = () => {
     const {setCartProducts } = useContext(authContext);
-    const cartProducts=JSON.parse(localStorage.getItem("CartProducts"));
+    const cartProducts=JSON.parse(localStorage.getItem("CartProducts"))||[];
     const [open, setOpen] = useState(false); // ✅ boolean value
 
   const handleSave = (data) => {
