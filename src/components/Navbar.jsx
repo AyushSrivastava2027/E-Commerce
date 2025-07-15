@@ -12,25 +12,27 @@ const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
+    const [showSearch, setShowSearch] = useState(false);
     const handleLogout = () => {
         logout();
         setShowMenu(false);
 
     }
+ 
     return (
         <motion.nav
             initial={{ y: -30 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="bg-gray-800  text-white border-gray-200 dark:bg-gray-900 sticky top-0 z-10">
-            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2 px-5 md:p-3 md:px-10">
+            className="bg-gray-800  text-white border-gray-200 dark:bg-gray-900  sticky top-0 z-10">
+            <div className="max-w-screen-xl flex flex-wrap items-center justify-between h-20 md:h-max mx-auto p-2 px-5 md:p-3 md:px-10">
                 {/* Logo */}
                 <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <span className="self-center text-2xl font-bold whitespace-nowrap dark:text-white">Grabbly</span>
                 </Link>
                 <div className="relative hidden md:block">
                     <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <i className="bi bi-search text-gray-500 dark:text-gray-400"></i>
+                    <i  className="bi bi-search text-gray-500 dark:text-gray-400"></i>
                     </div>
                     <input
                         type="text"
@@ -46,10 +48,10 @@ const Navbar = () => {
                 <div className="flex items-center md:order-2 md:space-x-8 space-x-4  ">
                     {/* Search Input (Desktop only) */}
 
-                    <i className="bi bi-search font-bold text-xl text-white md:hidden dark:text-gray-400"></i>
+                    { showSearch?<> <input type="text"  onChange={(e) => setSearch(e.target.value)} className=' border p-1 rounded:md bg-white text-gray-700 w-22 ' /></> :<> <i onClick={()=>setShowSearch(true)} className="bi bi-search font-bold text-xl text-white md:hidden dark:text-gray-400"  ></i></>}
                     {/* Cart Icon */}
                     <div className="relative">
-                        <i onClick={() => loggedIn ? navigate('/mycart') : toast.error("Login First!")} className="bi bi-cart-fill text-xl md:text-3xl cursor-pointer hover:text-blue-400"></i>
+                        <i onClick={() => localStorage.getItem('loggedInUser') ? navigate('/mycart') : toast.error("Login First!")} className="bi bi-cart-fill text-xl md:text-3xl cursor-pointer hover:text-blue-400"></i>
                         <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5">
                             {cartProducts ? cartProducts.length : 0}
                         </span>

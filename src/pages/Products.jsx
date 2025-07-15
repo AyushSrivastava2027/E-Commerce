@@ -88,7 +88,7 @@ const Products = () => {
         animate={{ y: 0, opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}
-        className='grid sm:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-3 md:gap-5'>
+        className='grid sm:grid-cols-2 md:p-5 p-5 grid-cols-1 lg:grid-cols-3 gap-3 md:gap-5'>
 
         {products.map((element, i) => (
 
@@ -117,19 +117,19 @@ const Products = () => {
 
               <h1 className='text-sm text-gray-500'>Category: {element.category}</h1>
               <h1 className='text-lg font-semibold text-green-600'>${element.price}</h1>
-              <div className='md:block  flex gap-1'>
+              <div className='md:block w-max  flex gap-1'>
                 <button style={{ textWrap: 'balance', marginBottom: '8px' }} onClick={() => localStorage.getItem('loggedInUser') ? addtocart(element) : doSignIn()} className={cartProducts.includes(element) ? 'cursor-pointer w-max px-2 md:px-6 py-2 mt-2 font-semibold bg-white border text-sm border-blue-500 text-[#1E2939] rounded' : 'py-2 text-sm cursor-pointer w-max px-2 md:px-7 md:py-2 mt-2 font-semibold bg-[#526e98] text-white rounded'}>
 
                   {cartProducts.includes(element) ? 'Remove Cart' : 'Add To Cart'}
                 </button>
-                <Link to={`/details/${element.id}`} className='underline text-sm font-semibold cursor-pointer p-2 md:px-6 '>View Details</Link>
+                <Link to={`/details/${element.id}`} className='py-2 text-sm cursor-pointer w-max px-2 md:px-7 md:py-2 mt-2 font-semibold underline rounded'>View Details</Link>
               </div>
             </div>
-            <div className="w-full sm:w-[40%] md:h-50 h-40 flex items-center justify-center">
+            <div className="w-full h-full flex items-center justify-center">
               <img
                 src={element.thumbnail}
                 alt={element.title}
-                className="h-full w-full object-cover rounded-md"
+                className="w-40 h-40 object-cover rounded-md"
               />
             </div>
 
