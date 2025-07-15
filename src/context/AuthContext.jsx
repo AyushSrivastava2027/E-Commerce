@@ -22,7 +22,9 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('loggedInUser');
     setUser(null);
-    setLoggedIn(false)
+    setLoggedIn(false);
+    localStorage.removeItem('CartProducts');
+    setCartProducts([]);
   }
   const addtocart = (ele) => {
     let updatedCart;

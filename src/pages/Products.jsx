@@ -42,13 +42,18 @@ const Products = () => {
 
   // console.log(event.target.value)
 
-  useEffect(() => {
-    const searchedProduct = storeProduct.filter((ele, i) => ele.title?.toLowerCase().includes(search.toLowerCase()))
-    setProducts(searchedProduct);
-    if (searchedProduct.length === 0) {
-      // toast.error('No Results Found!!')
-    }
-  }, [setSearch])
+ useEffect(() => {
+  if (!search) {
+    setProducts(storeProduct);
+    return;
+  }
+
+  const searchedProduct = storeProduct.filter((ele) =>
+    ele.title?.toLowerCase().includes(search.toLowerCase())
+  );
+  setProducts(searchedProduct);
+}, [search, storeProduct]);
+
 
 
 

@@ -40,7 +40,7 @@ const AddressModal = ({ isOpen, onClose, onSave }) => {
               type="text"
               name="fullName"
               placeholder="Full Name"
-              value={user.name}
+              value={user?user.name:''}
               onChange={handleChange}
               required
               className="w-full p-2 border rounded"
