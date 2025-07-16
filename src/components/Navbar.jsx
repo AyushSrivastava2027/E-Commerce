@@ -18,7 +18,7 @@ const Navbar = () => {
         setShowMenu(false);
 
     }
- 
+
     return (
         <motion.nav
             initial={{ y: -30 }}
@@ -32,7 +32,7 @@ const Navbar = () => {
                 </Link>
                 <div className="relative hidden md:block">
                     <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                    <i  className="bi bi-search text-gray-500 dark:text-gray-400"></i>
+                        <i className="bi bi-search text-gray-500 dark:text-gray-400"></i>
                     </div>
                     <input
                         type="text"
@@ -48,10 +48,10 @@ const Navbar = () => {
                 <div className="flex items-center md:order-2 md:space-x-8 space-x-4  ">
                     {/* Search Input (Desktop only) */}
 
-                    { showSearch?<> <input type="text"  onChange={(e) => setSearch(e.target.value)} className=' border p-1 rounded:md bg-white text-gray-700 w-22 ' /></> :<> <i onClick={()=>setShowSearch(true)} className="bi bi-search font-bold text-xl text-white md:hidden dark:text-gray-400"  ></i></>}
+                    {showSearch ? <> <input type="text" onChange={(e) => setSearch(e.target.value)} className=' border p-1 rounded:md bg-white text-gray-700 w-30 ' /></> : <> <i onClick={() => setShowSearch(true)} className="bi bi-search font-bold text-2xl text-white md:hidden dark:text-gray-400"  ></i></>}
                     {/* Cart Icon */}
                     <div className="relative">
-                        <i onClick={() => localStorage.getItem('loggedInUser') ? navigate('/mycart') : toast.error("Login First!")} className="bi bi-cart-fill text-xl md:text-3xl cursor-pointer hover:text-blue-400"></i>
+                        <i onClick={() => localStorage.getItem('loggedInUser') ? navigate('/mycart') : toast.error("Login First!")} className="bi bi-cart-fill text-2xl md:text-3xl cursor-pointer hover:text-blue-400"></i>
                         <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5">
                             {cartProducts ? cartProducts.length : 0}
                         </span>
@@ -59,10 +59,10 @@ const Navbar = () => {
 
                     {/* Profile Icon */}
                     {
-                        localStorage.getItem('loggedInUser') ? <><i className="bi bi-person-circle text-xl md:text-3xl cursor-pointer hover:text-blue-400" onClick={() => showMenu === true ? setShowMenu(false) : setShowMenu(true)} ></i></> : <>
+                        localStorage.getItem('loggedInUser') ? <><i className="bi bi-person-circle text-2xl md:text-3xl cursor-pointer hover:text-blue-400" onClick={() => showMenu === true ? setShowMenu(false) : setShowMenu(true)} ></i></> : <>
                             <div className='flex gap-2'>
-                                <Link to='/login' className='text-gray-800 bg-white p-1 px-2 text-sm md:text-md md:px-4 cursor-pointer rounded-md'>Login</Link>
-                                <Link to='/signup' className='text-gray-800 bg-white p-1 px-2 text-sm md:text-md md:px-4 cursor-pointer rounded-md'>Signup</Link>
+                                <Link to='/login' className='text-gray-800 bg-white p-1 px-2 text-md md:text-md md:px-4 cursor-pointer rounded-md'>Login</Link>
+                                <Link to='/signup' className='text-gray-800 bg-white p-1 px-2 text-md md:text-md md:px-4 cursor-pointer rounded-md'>Signup</Link>
                             </div>
                         </>
                     }
@@ -73,8 +73,9 @@ const Navbar = () => {
             </div>
 
             {
-                showMenu ? <> <ul className="absolute right-0 top-13 z-10 w-20 md:w-30 bg-gray-100 rounded-lg shadow-lg text-gray-800 overflow-hidden">
-                    <li className="border-b text-sm md:text-md border-gray-300 text-center py-2 hover:bg-gray-200 cursor-pointer"><button>Profile</button></li>
+                showMenu ? <> <ul className="absolute right-5 top-13 z-10 w-50  bg-gray-100 rounded-lg shadow-lg text-gray-800 overflow-hidden">
+                    <i onClick={() => setShowMenu(false)} className=' absolute right-5 text-lg bi bi-x' style={{ fontFamily: 'monospace' }}></i>
+                    <li className="border-b mt-2 text-sm md:text-md border-gray-300 text-center py-2 hover:bg-gray-200 cursor-pointer"><button>Profile</button></li>
                     <li className="border-b text-sm md:text-md border-gray-300 text-center py-2 hover:bg-gray-200 cursor-pointer">Setting</li>
                     <li className="border-b border-gray-300 text-sm md:text-md text-center py-2 hover:bg-gray-200 cursor-pointer">My Orders</li>
                     <li onClick={handleLogout} className="text-center py-2 hover:bg-red-100 text-sm md:text-md text-red-600 font-semibold cursor-pointer">Log Out</li>

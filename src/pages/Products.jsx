@@ -98,7 +98,7 @@ const Products = () => {
 
             {/* Info Section */}
             <div className='w-[65%] flex flex-col gap-1 md:gap-2'>
-              <h1 className='font-semibold text-sm md:text-xl'>{element.title}</h1>
+              <h1 className='font-semibold text-md md:text-xl'>{element.title}</h1>
               <p onClick={() => toggleExpand(element.id)} className={`cursor-pointer text-sm text-gray-800 ${toggleDes.includes(element.id) ? '' : 'line-clamp-2'}`}>{element.description}</p>
 
               {/* ⭐ Dynamic Star Rating */}
