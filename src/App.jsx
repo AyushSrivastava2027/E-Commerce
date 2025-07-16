@@ -10,6 +10,8 @@ import { authContext } from './context/AuthContext'
 import MyCart from './pages/MyCart'
 import ViewDetails from './pages/ViewDetails'
 import AddressModal from './pages/AddressModal'
+import OrderConfirm from './pages/OrderConfirm';
+import MyOrders from './pages/MyOrders'
 
 
 
@@ -27,8 +29,10 @@ const App = () => {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/mycart' element={<MyCart />} />
+          <Route path='/ordersummary' element={<OrderConfirm/>} />
           <Route path='/details/:id' element={<ViewDetails/>} />
           <Route path='/address' element={<AddressModal/>}/>
+          <Route path='/allorders' element={<MyOrders/>} />
         </Routes>
         <Toaster
           position="bottom-center"

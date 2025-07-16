@@ -12,7 +12,7 @@ const Products = () => {
   //  console.log(cartProducts)
   const [toggleDes, setToggleDes] = useState([]);
   const { addtocart, cartProducts, setCartProducts, loggedIn, search, setSearch } = useContext(authContext)
-  console.log(cartProducts)
+
   // console.log(typeof cartProducts)
   useEffect(() => {
     const fetchdata = async () => {
@@ -23,7 +23,7 @@ const Products = () => {
         setProducts(data.products);
         //   console.log(products);
         setStoredProduct(data.products);
-        console.log(storeProduct);
+   
 
       }
       catch (error) {
@@ -35,7 +35,7 @@ const Products = () => {
 
 
   useEffect(() => {
-    console.log("Updated cart:", cartProducts);
+    // console.log("Updated cart:", cartProducts);
 
   }, [cartProducts]);
 

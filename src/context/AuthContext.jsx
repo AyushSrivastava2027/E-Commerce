@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState();
   const [cartProducts, setCartProducts] = useState([]);
   const [search, setSearch] = useState();
+  const[orderproducts,setOrderProducts]=useState([]);
   useEffect(() => {
     // On mount, try to load user from localStorage
     const cartItem = JSON.parse(localStorage.getItem('CartProducts'))||[];
@@ -56,7 +57,7 @@ export const AuthProvider = ({ children }) => {
 
   }
   return (
-    <authContext.Provider value={{ login, user, cartProducts, setCartProducts, logout, loggedIn, search, setSearch, addtocart }}>
+    <authContext.Provider value={{ login, user,setUser, cartProducts, setCartProducts, logout, loggedIn, search, setSearch, addtocart,orderproducts,setOrderProducts }}>
       {children}
     </authContext.Provider>
   )

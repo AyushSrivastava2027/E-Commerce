@@ -1,10 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState,useEffect } from 'react';
 import { Dialog } from '@headlessui/react';
 import { X } from 'lucide-react';
 import { authContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const AddressModal = ({ isOpen, onClose, onSave }) => {
-  const {user}=useContext(authContext);
+  const { cartProducts, setCartProducts, orderproducts, setOrderProducts } = useContext(authContext);
+  const navigate = useNavigate();
+  const { user, setUser } = useContext(authContext);
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
@@ -14,14 +17,30 @@ const AddressModal = ({ isOpen, onClose, onSave }) => {
     state: ''
   });
 
+  useEffect(() => {
+    console.log("Updated Order Products:", orderproducts);
+  }, [orderproducts]);
+
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setUser((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    // console.log(user.pincode)
   };
 
+  // console.log(productsToOrder)
+  // setOrderProducts(productsToOrder);
   const handleSubmit = (e) => {
+    const productsToOrder = [...cartProducts];
+    setOrderProducts(productsToOrder);
+    // console.log(orderproducts)
     e.preventDefault();
     onSave(formData);
     onClose();
+    // console.log(cartProducts)
+    // console.log(orderproducts)
+    setCartProducts([]);
+    localStorage.removeItem('CartProducts');
+    navigate('/ordersummary')
   };
 
   return (
@@ -29,7 +48,7 @@ const AddressModal = ({ isOpen, onClose, onSave }) => {
       <div className="flex items-center justify-center min-h-screen px-4">
         {/* 👇 Replacing Dialog.Overlay */}
         <div className="fixed inset-0 bg-black opacity-30" aria-hidden="true" />
-        
+
         <div className="bg-white rounded-2xl shadow-lg p-6 w-full max-w-md z-50 relative">
           <button onClick={onClose} className="absolute top-3 right-3 text-gray-500 hover:text-black">
             <X />
@@ -40,7 +59,7 @@ const AddressModal = ({ isOpen, onClose, onSave }) => {
               type="text"
               name="fullName"
               placeholder="Full Name"
-              value={user?user.name:''}
+              value={user ? user.name : ''}
               onChange={handleChange}
               required
               className="w-full p-2 border rounded"

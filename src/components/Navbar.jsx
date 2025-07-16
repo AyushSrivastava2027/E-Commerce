@@ -48,7 +48,7 @@ const Navbar = () => {
                 <div className="flex items-center md:order-2 md:space-x-8 space-x-4  ">
                     {/* Search Input (Desktop only) */}
 
-                    {showSearch ? <> <input type="text" onChange={(e) => setSearch(e.target.value)} className=' border p-1 rounded:md bg-white text-gray-700 w-30 ' /></> : <> <i onClick={() => setShowSearch(true)} className="bi bi-search font-bold text-2xl text-white md:hidden dark:text-gray-400"  ></i></>}
+                    {showSearch ? <> <input type="text" onChange={(e) => setSearch(e.target.value)} autoFocus={true} className=' border p-1 rounded:md bg-white text-gray-700 w-30 ' /></> : <> <i onClick={() => setShowSearch(true)} className="bi bi-search font-bold text-2xl text-white md:hidden dark:text-gray-400"  ></i></>}
                     {/* Cart Icon */}
                     <div className="relative">
                         <i onClick={() => localStorage.getItem('loggedInUser') ? navigate('/mycart') : toast.error("Login First!")} className="bi bi-cart-fill text-2xl md:text-3xl cursor-pointer hover:text-blue-400"></i>
