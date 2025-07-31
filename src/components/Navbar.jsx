@@ -48,7 +48,31 @@ const Navbar = () => {
                 <div className="flex items-center md:order-2 md:space-x-8 space-x-4  ">
                     {/* Search Input (Desktop only) */}
 
-                    {showSearch ? <> <input type="text" onChange={(e) => setSearch(e.target.value)} autoFocus={true} className=' border p-1 rounded:md bg-white text-gray-700 w-30 ' /></> : <> <i onClick={() => setShowSearch(true)} className="bi bi-search font-bold text-2xl text-white md:hidden dark:text-gray-400"  ></i></>}
+                   {showSearch ? (
+  <div className="relative flex items-center h-10">
+    <input
+      type="text"
+      autoFocus
+      onChange={(e) => setSearch(e.target.value)}
+      className="border border-gray-300 rounded-md pl-3 pr-8 py-2 text-sm text-gray-700 w-30 bg-white focus:outline-none"
+      placeholder="Search..."
+    />
+    <i
+      onClick={() => {
+        setSearch("");
+        setShowSearch(false);
+      }}
+      className="bi bi-x absolute right-2 text-gray-500 text-lg cursor-pointer"
+    ></i>
+  </div>
+) : (
+  <i
+    onClick={() => setShowSearch(true)}
+    className="bi bi-search font-bold text-2xl text-white md:hidden dark:text-gray-400"
+  ></i>
+)}
+
+
                     {/* Cart Icon */}
                     <div className="relative">
                         <i onClick={() => localStorage.getItem('loggedInUser') ? navigate('/mycart') : toast.error("Login First!")} className="bi bi-cart-fill text-2xl md:text-3xl cursor-pointer hover:text-blue-400"></i>
@@ -60,10 +84,11 @@ const Navbar = () => {
                     {/* Profile Icon */}
                     {
                         localStorage.getItem('loggedInUser') ? <><i className="bi bi-person-circle text-2xl md:text-3xl cursor-pointer hover:text-blue-400" onClick={() => showMenu === true ? setShowMenu(false) : setShowMenu(true)} ></i></> : <>
-                            <div className='flex gap-2'>
+                            <div className='hidden gap-2 md:flex'>
                                 <Link to='/login' className='text-gray-800 bg-white p-1 px-2 text-md md:text-md md:px-4 cursor-pointer rounded-md'>Login</Link>
                                 <Link to='/signup' className='text-gray-800 bg-white p-1 px-2 text-md md:text-md md:px-4 cursor-pointer rounded-md'>Signup</Link>
                             </div>
+                             <Link to='/login' className='text-gray-800 md:hidden bg-white p-1 px-2 text-md md:text-md md:px-4 cursor-pointer rounded-md'>SignIn</Link>
                         </>
                     }
 

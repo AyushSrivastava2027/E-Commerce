@@ -54,7 +54,7 @@ const Login = () => {
           <span className="w-10 h-10 items-center justify-center inline-flex rounded-full font-bold text-lg border-2 border-white">in</span>
         </div>
           <p className="text-gray-100 text-lg">
-                Don't have an Account?<button onClick={()=>navigate('/')} className='text-blue-500 underline cursor-pointer'>Sign Up</button>
+                Don't have an Account?<button onClick={()=>navigate('/signup')} className='text-blue-500 underline cursor-pointer'>Sign Up</button>
               </p>
 
         <form action className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto" onSubmit={handleLogin} >
